@@ -3,21 +3,23 @@ import commonJs from 'rollup-plugin-commonjs'
 import uglify from 'rollup-plugin-uglify'
 
 const config = {
-  entry: 'src/index.js',
-  format: 'umd',
-  moduleName: 'SVGArcToCubicBezier',
+  input: 'src/index.js',
   plugins: [
     babel({ exclude: 'node_modules/**' }),
     commonJs()
   ],
-  sourceMap: true
+  output: {
+    name: 'SVGArcToCubicBezier',
+    sourcemap: false,
+    format: 'umd'
+  }
 }
 
 if (process.env.NODE_ENV === 'production') {
-  config.dest = 'dist/svg-points-to-cubic-bezier.min.js'
+  config.output.file = 'dist/svg-points-to-cubic-bezier.min.js'
   config.plugins.push(uglify())
 } else {
-  config.dest = 'dist/svg-points-to-cubic-bezier.js'
+  config.output.file = 'dist/svg-points-to-cubic-bezier.js'
 }
 
 export default config
