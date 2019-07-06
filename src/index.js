@@ -14,11 +14,7 @@ const mapToEllipse = ({ x, y }, rx, ry, cosphi, sinphi, centerx, centery) => {
 }
 
 const approxUnitArc = (ang1, ang2) => {
-  // See http://spencermortensen.com/articles/bezier-circle/ for the derivation
-  // of this constant.
-  // Note: We need to keep the sign of ang2, because this determines the
-  //       direction of the arc using the sweep-flag parameter.
-  const c = 0.551915024494 * (ang2 < 0 ? -1 : 1)
+  const a = 4 / 3 * Math.tan(ang2 / 4)
 
   const x1 = Math.cos(ang1)
   const y1 = Math.sin(ang1)
@@ -27,12 +23,12 @@ const approxUnitArc = (ang1, ang2) => {
 
   return [
     {
-      x: x1 - y1 * c,
-      y: y1 + x1 * c
+      x: x1 - y1 * a,
+      y: y1 + x1 * a
     },
     {
-      x: x2 + y2 * c,
-      y: y2 - x2 * c
+      x: x2 + y2 * a,
+      y: y2 - x2 * a
     },
     {
       x: x2,
