@@ -1,6 +1,6 @@
 import babel from 'rollup-plugin-babel'
 import commonJs from 'rollup-plugin-commonjs'
-import uglify from 'rollup-plugin-uglify'
+import { uglify } from 'rollup-plugin-uglify'
 
 const config = {
   input: 'src/index.js',
