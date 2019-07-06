@@ -39,7 +39,8 @@ const approxUnitArc = (ang1, ang2) => {
 
 const vectorAngle = (ux, uy, vx, vy) => {
   const sign = (ux * vy - uy * vx < 0) ? -1 : 1
-  const dot = ux * vx + uy * vy
+
+  let dot = ux * vx + uy * vy
 
   if (dot > 1) {
     dot = 1
