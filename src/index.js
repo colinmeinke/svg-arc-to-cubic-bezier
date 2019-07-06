@@ -43,21 +43,17 @@ const approxUnitArc = (ang1, ang2) => {
 
 const vectorAngle = (ux, uy, vx, vy) => {
   const sign = (ux * vy - uy * vx < 0) ? -1 : 1
-  const umag = Math.sqrt(ux * ux + uy * uy)
-  const vmag = Math.sqrt(ux * ux + uy * uy)
   const dot = ux * vx + uy * vy
 
-  let div = dot / (umag * vmag)
-
-  if (div > 1) {
-    div = 1
+  if (dot > 1) {
+    dot = 1
   }
 
-  if (div < -1) {
-    div = -1
+  if (dot < -1) {
+    dot = -1
   }
 
-  return sign * Math.acos(div)
+  return sign * Math.acos(dot)
 }
 
 const getArcCenter = (
