@@ -14,7 +14,13 @@ const mapToEllipse = ({ x, y }, rx, ry, cosphi, sinphi, centerx, centery) => {
 }
 
 const approxUnitArc = (ang1, ang2) => {
-  const a = 4 / 3 * Math.tan(ang2 / 4)
+  // If 90 degree circular arc, use a constant
+  // as derived from http://spencermortensen.com/articles/bezier-circle
+  const a = ang2 === 1.5707963267948966
+    ? 0.551915024494
+    : ang2 === -1.5707963267948966
+      ? -0.551915024494
+      : 4 / 3 * Math.tan(ang2 / 4)
 
   const x1 = Math.cos(ang1)
   const y1 = Math.sin(ang1)
